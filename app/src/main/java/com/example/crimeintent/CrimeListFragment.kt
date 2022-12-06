@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -88,6 +89,7 @@ class CrimeListFragment : Fragment (){
         private val solvedImageView: ImageView = itemView.findViewById(R.id.crime_solved)
         private val titleTextView: TextView = itemView.findViewById(R.id.crime_title)
         private val dateTextView: TextView = itemView.findViewById(R.id.crime_date)
+        private val buttonPolice: Button = itemView.findViewById(R.id.button_police)
         init {
             itemView.setOnClickListener(this)
         }
@@ -95,12 +97,14 @@ class CrimeListFragment : Fragment (){
         fun bind(crime: Crime) {
         this.crime = crime
         titleTextView.text = this.crime.title
-        dateTextView.text = SimpleDateFormat("EEEE, MMM d, k:m , yyyy").format(crime.date)
+        dateTextView.text = SimpleDateFormat("EEEE, MMM d, yyyy, k:m").format(crime.date)
             solvedImageView.visibility = if (crime.isSolved) {
+                buttonPolice.visibility = View.VISIBLE
                 View.VISIBLE
             }
             else
             {
+                buttonPolice.visibility = View.GONE
                 View.GONE
             }
         }
